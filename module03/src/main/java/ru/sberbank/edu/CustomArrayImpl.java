@@ -1,34 +1,58 @@
 package ru.sberbank.edu;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
-/**
- * Simple array. Can store any objects.
- */
-public interface CustomArray<T> {
+public class CustomArrayImpl<T> implements CustomArray{
+    private int size;
+    /**
+     * @return
+     */
+    @Override
+    public int size() {
+        return this.size;
+    }
 
-    int size();
-
-    boolean isEmpty();
+    /**
+     * @return
+     */
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
 
     /**
      * Add single item.
+     *
+     * @param item
      */
-    boolean add(T item);
+    @Override
+    public boolean add(Object item) {
+        return false;
+    }
 
     /**
      * Add all items.
      *
+     * @param items
      * @throws IllegalArgumentException if parameter items is null
      */
-    boolean addAll(T[] items);
+    @Override
+    public boolean addAll(Object[] items) {
+        return false;
+    }
 
     /**
      * Add all items.
      *
+     * @param items
      * @throws IllegalArgumentException if parameter items is null
      */
-    boolean addAll(Collection<T> items);
+    @Override
+    public boolean addAll(Collection items) {
+        return false;
+    }
 
     /**
      * Add items to current place in array.
@@ -38,7 +62,10 @@ public interface CustomArray<T> {
      * @throws ArrayIndexOutOfBoundsException if index is out of bounds
      * @throws IllegalArgumentException       if parameter items is null
      */
-    boolean addAll(int index, T[] items);
+    @Override
+    public boolean addAll(int index, Object[] items) {
+        return false;
+    }
 
     /**
      * Get item by index.
@@ -46,16 +73,23 @@ public interface CustomArray<T> {
      * @param index - index
      * @throws ArrayIndexOutOfBoundsException if index is out of bounds
      */
-    T get(int index);
+    @Override
+    public Object get(int index) {
+        return null;
+    }
 
     /**
      * Set item by index.
      *
      * @param index - index
+     * @param item
      * @return old value
      * @throws ArrayIndexOutOfBoundsException if index is out of bounds
      */
-    T set(int index, T item);
+    @Override
+    public Object set(int index, Object item) {
+        return null;
+    }
 
     /**
      * Remove item by index.
@@ -63,7 +97,10 @@ public interface CustomArray<T> {
      * @param index - index
      * @throws ArrayIndexOutOfBoundsException if index is out of bounds
      */
-    void remove(int index) throws ArrayIndexOutOfBoundsException;
+    @Override
+    public void remove(int index) throws ArrayIndexOutOfBoundsException {
+
+    }
 
     /**
      * Remove item by value. Remove first item occurrence.
@@ -71,7 +108,10 @@ public interface CustomArray<T> {
      * @param item - item
      * @return true if item was removed
      */
-    boolean remove(T item);
+    @Override
+    public boolean remove(Object item) {
+        return false;
+    }
 
     /**
      * Checks if item exists.
@@ -79,7 +119,10 @@ public interface CustomArray<T> {
      * @param item - item
      * @return true or false
      */
-    boolean contains(T item);
+    @Override
+    public boolean contains(Object item) {
+        return false;
+    }
 
     /**
      * Index of item.
@@ -87,32 +130,42 @@ public interface CustomArray<T> {
      * @param item - item
      * @return index of element or -1 of list doesn't contain element
      */
-    int indexOf(T item);
+    @Override
+    public int indexOf(Object item) {
+        return 0;
+    }
 
     /**
      * Grow current capacity to store new elements if needed.
      *
      * @param newElementsCount - new elements count
      */
-    void ensureCapacity(int newElementsCount);
+    @Override
+    public void ensureCapacity(int newElementsCount) {
+
+    }
 
     /**
      * Get current capacity.
      */
-    int getCapacity();
+    @Override
+    public int getCapacity() {
+        return 0;
+    }
 
     /**
      * Reverse list.
      */
-    void reverse();
+    @Override
+    public void reverse() {
 
-    /**
-     * Get content in format '[ element1 element2 ... elenentN ] or [ ] if empty.
-     */
-    String toString();
+    }
 
     /**
      * Get copy of current array.
      */
-    Object[] toArray();
+    @Override
+    public Object[] toArray() {
+        return new Object[0];
+    }
 }
