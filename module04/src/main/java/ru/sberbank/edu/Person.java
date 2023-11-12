@@ -23,7 +23,7 @@ public class Person implements Comparable<Person>{
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, city, age);
+        return Objects.hash(name.toUpperCase(), city.toUpperCase(), age);
     }
 
     @Override
