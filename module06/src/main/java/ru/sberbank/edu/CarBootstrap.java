@@ -21,6 +21,9 @@ public class CarBootstrap {
             CarService carService = new CarServiceImpl(carRepository);
 
             carService.addCar("777", "Lada");
+            carService.addCar("BMW", "x3");
+            carService.addCar("BMV", "x3");
+            carService.addCar("Suzuki", "Jimny");
 
             // Test check start
             String readAllCarsSql = "SELECT * FROM car";
@@ -32,6 +35,19 @@ public class CarBootstrap {
                 String model = resultSet.getString(2);
                 System.out.println("id=" + id + "; model=" + model);
             }
+
+            carService.deleteCar("777");
+            // Test check start
+
+
+            ResultSet resultSet1 = statement.executeQuery(readAllCarsSql);
+
+            while (resultSet1.next()) {
+                String id = resultSet1.getString(1);
+                String model = resultSet1.getString(2);
+                System.out.println("id=" + id + "; model=" + model);
+            }
+
             // Test end
         }
         server.stop();
