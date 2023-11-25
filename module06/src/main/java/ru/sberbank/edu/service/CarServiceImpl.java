@@ -26,6 +26,17 @@ public class CarServiceImpl implements CarService {
         updateCarModel(car, newModel);
     }
 
+    /**
+     * @param id
+     */
+    @Override
+    public void deleteCar(String id) throws SQLException {
+        Optional<Car> optCar = carRepository.findById(id);
+        Car car = optCar.orElseThrow();
+        carRepository.deleteById(id);
+
+    }
+
     private void updateCarModel(Car car, String newModel) {
         car.setModel(newModel);
         try {
