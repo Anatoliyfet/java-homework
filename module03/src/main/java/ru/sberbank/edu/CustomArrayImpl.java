@@ -1,11 +1,37 @@
 package ru.sberbank.edu;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import jdk.internal.util.ArraysSupport;
 
-public class CustomArrayImpl<T> implements CustomArray{
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.function.UnaryOperator;
+
+public class CustomArrayImpl<E> implements CustomArray {
     private int size;
+
+    private static final int DEFAULT_CAPACITY = 10;
+    private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {};
+
+    protected transient int modCount = 0;
+
+    transient Object[] elementData;
+
+    @Override
+    public String toString() {
+        return "CustomArrayImpl{" +
+                "size=" + size +
+                ", modCount=" + modCount +
+                ", elementData=" + Arrays.toString(elementData) +
+                '}';
+    }
+
+    public CustomArrayImpl() {
+
+        this.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
+
+    }
+
     /**
      * @return
      */
@@ -29,7 +55,9 @@ public class CustomArrayImpl<T> implements CustomArray{
      */
     @Override
     public boolean add(Object item) {
-        return false;
+        modCount++;
+        add(item, elementData, size);
+        return true;
     }
 
     /**
@@ -98,7 +126,7 @@ public class CustomArrayImpl<T> implements CustomArray{
      * @throws ArrayIndexOutOfBoundsException if index is out of bounds
      */
     @Override
-    public void remove(int index) throws ArrayIndexOutOfBoundsException {
+    public void remove(int index) {
 
     }
 
@@ -168,4 +196,40 @@ public class CustomArrayImpl<T> implements CustomArray{
     public Object[] toArray() {
         return new Object[0];
     }
+
+    /**
+     * This helper method split out from add(E) to keep method
+     * bytecode size under 35 (the -XX:MaxInlineSize default value),
+     * which helps when add(E) is called in a C1-compiled loop.
+     */
+    private void add(Object e, Object[] elementData, int s) {
+        if (s == elementData.length)
+            elementData = grow(size + 1);
+        elementData[s] = e;
+        size = s + 1;
+    }
+
+    private Object[] grow() {
+        return grow(size + 1);
+    }
+
+    /**
+     * Increases the capacity to ensure that it can hold at least the
+     * number of elements specified by the minimum capacity argument.
+     *
+     * @param minCapacity the desired minimum capacity
+     * @throws OutOfMemoryError if minCapacity is less than zero
+     */
+    private Object[] grow(int minCapacity) {
+        int oldCapacity = elementData.length;
+        if (oldCapacity > 0 || elementData != DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {
+            int newCapacity = ArraysSupport.newLength(oldCapacity,
+                    minCapacity - oldCapacity, /* minimum growth */
+                    oldCapacity >> 1           /* preferred growth */);
+            return elementData = Arrays.copyOf(elementData, newCapacity);
+        } else {
+            return elementData = new Object[Math.max(DEFAULT_CAPACITY, minCapacity)];
+        }
+    }
+
 }

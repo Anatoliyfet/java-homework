@@ -115,4 +115,7 @@ public interface CustomArray<T> {
      * Get copy of current array.
      */
     Object[] toArray();
+
+
+
 }
