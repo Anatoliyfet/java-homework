@@ -25,7 +25,7 @@ public class FinancialServlet extends HttpServlet {
 //        super.doGet(req, resp);
         String url = req.getRequestURI();
 
-        if (url.equals("/finance") ) {
+        if (url.equals("/finance")) {
 //            req.setAttribute("author", "Petr Petrov");
             setPages("/finance.jsp", req, resp);
 
@@ -59,7 +59,9 @@ public class FinancialServlet extends HttpServlet {
     }
 
     private void checkAndSetPages(HttpServletRequest req, HttpServletResponse resp, Integer sum, Integer percentage, Integer years) throws ServletException, IOException {
-        if (sum == null || percentage == null || years == null){
+        if ((sum == null || percentage == null || years == null)
+//               <= потому что 0 тоже приводит к ошибке
+                || (sum <= 0  || percentage <=0 || years <=0 )) {
             String errorMessage = "Неверный формат данных. Скорректируйте значения";
             req.setAttribute("errorMessage", errorMessage);
             setPages("/error.jsp", req, resp);
@@ -81,7 +83,7 @@ public class FinancialServlet extends HttpServlet {
     private Integer getInteger(String sum) {
         try {
             return Integer.parseInt(sum);
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             return null;
         }
 
