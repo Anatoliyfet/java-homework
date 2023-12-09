@@ -1,0 +1,55 @@
+h1 {
+    color:darkblue;
+    margin-left: 10%;
+}
+
+table {
+    border-style: solid;
+    border-color: darkblue;
+    margin-left: 10%;
+}
+img {
+    margin-left: 10%;
+}
+a {
+    margin-left: 10%;
+    /*text-align: center;*/
+}
+.a-align-center {
+    text-align: center;
+}
+p {
+    margin-left: 10%;
+}
+h2 {
+    margin-left: 10%;
+}
+/*.hr-washed {*/
+/*    margin: 20px 0;*/
+/*    padding: 0;*/
+/*    height: 0;*/
+/*    border: none;*/
+/*    box-shadow: 0 0 10px 1px black;*/
+/*}*/
+
+/*.hr-shelf {*/
+/*    margin: -30px auto 10px;*/
+/*    padding: 0;*/
+/*    height: 50px;*/
+/*    border: none;*/
+/*    border-bottom: 1px solid #1f1209;*/
+/*    box-shadow: 0 20px 20px -20px #333;*/
+/*    width: 95%;*/
+/*}*/
+hr {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.h1-center {
+    text-align: center;
+}
+
+.p-align-left {
+    margin-left: 10%;
+}
+
