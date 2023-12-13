@@ -1,20 +1,22 @@
 package ru.sberbank.edu;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Weather cache.
- */
 public class WeatherCache {
 
     private final Map<String, WeatherInfo> cache = new HashMap<>();
-    private WeatherProvider weatherProvider;
+    private final WeatherProvider weatherProvider;
 
     /**
-     * Default constructor.
+     * Constructor.
+     *
+     * @param weatherProvider - weather provider
      */
-    public WeatherCache() {
+    public WeatherCache(WeatherProvider weatherProvider) {
+        this.weatherProvider = weatherProvider;
     }
 
     /**
@@ -26,9 +28,48 @@ public class WeatherCache {
      * @param city - city
      * @return actual weather info
      */
-    public WeatherInfo getWeatherInfo(String city) {
+    public synchronized WeatherInfo getWeatherInfo(String city) {
         // should be implemented
-        return null;
+        long minutes = 0;
+        WeatherInfo weatherInfoCashe = cache.get(city);
+
+//        WeatherProvider weatherProvider = new WeatherProvider();
+        WeatherInfo weatherInfo = weatherProvider.get(city);
+
+        if (weatherInfo == null) {
+            removeWeatherInfo(city);
+            return null;
+        }
+
+        if (weatherInfoCashe != null) {
+//            weatherInfoCashe = weatherInfo;
+            minutes = weatherInfo.getExpiryTime().until(weatherInfoCashe.getExpiryTime(), ChronoUnit.MINUTES);
+        }
+
+
+        weatherInfoCashe = addWeatherInfoToCashe(city, weatherInfoCashe, weatherInfo, minutes);
+
+
+        return weatherInfoCashe;
+    }
+
+    private WeatherInfo addWeatherInfoToCashe(String city, WeatherInfo weatherInfoCashe, WeatherInfo weatherInfo, long minutes) {
+        if (weatherInfoCashe == null) {
+            addWeatherInfo(city, weatherInfo);
+            return weatherInfo;
+        }
+
+
+        if ((weatherInfoCashe != null && minutes > 5) || !(weatherInfoCashe.equals(weatherInfo))) {
+            addWeatherInfo(city, weatherInfo);
+            weatherInfoCashe = weatherInfo;
+        }
+        return weatherInfoCashe;
+    }
+
+    public void addWeatherInfo(String city, WeatherInfo weatherInfo) {
+        weatherInfo.setExpiryTime(LocalDateTime.now().plusMinutes(5));
+        cache.put(city, weatherInfo);
     }
 
     /**
@@ -36,5 +77,6 @@ public class WeatherCache {
      **/
     public void removeWeatherInfo(String city) {
         // should be implemented
+        cache.remove(city);
     }
 }
