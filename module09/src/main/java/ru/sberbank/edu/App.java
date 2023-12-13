@@ -1,6 +1,7 @@
 package ru.sberbank.edu;
 
-import org.apache.catalina.core.ApplicationContext;
+
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 //import ru.sberbank.edu.AppConfig;
 
@@ -12,7 +13,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 
         WeatherCache cache = context.getBean(WeatherCache.class);
 
