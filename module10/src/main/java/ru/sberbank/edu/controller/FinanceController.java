@@ -20,7 +20,7 @@ public class FinanceController {
 
     @GetMapping("/finance")
     public String finance(Model model) {
-        Finance finance = new Finance(1,2,3);
+        Finance finance = new Finance(50_000,2,3);
         model.addAttribute(finance);
         return "finance/finance-edit";
     }
@@ -28,7 +28,6 @@ public class FinanceController {
     @PostMapping("/finance")
     public String edit(@Valid @ModelAttribute("finance") Finance finance, BindingResult result) {
         if (result.hasErrors()) {
-
             return "finance/finance-edit";
         }
 

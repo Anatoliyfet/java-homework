@@ -16,7 +16,7 @@ import java.io.File;
 public class App 
 {
     public static  final String CONTEXT = "/";
-    public static final int PORT = 8082;
+    public static final int PORT = 8083;
     public static void main( String[] args ) throws LifecycleException {
         Tomcat tomcat = new Tomcat();
         tomcat.setBaseDir("temp");
