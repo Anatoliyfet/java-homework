@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Count</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <!--  <script th:src="@{/static/js/main.js}"></script>-->
+</head>
+<body>
+<article>
+    <h1>Count Percent</h1>
+
+    <div class="form">
+        <form th:action="@{/finance}" method="post" th:object="${finance}">
+
+            <input type="text" name="sum" placeholder="sum" th:field="*{sum}"/><br/>
+            <div th:if="#{fields.hasErrors('sum')}" th:errors="*{sum}" class="error"></div>
+
+            <input type="text" name="percentage" placeholder="percentage" th:field="*{percentage}"/><br/>
+            <div th:if="#{fields.hasErrors('percentage')}" th:errors="*{percentage}" class="error"></div>
+
+            <input type="text" name="years" placeholder="years" th:field="*{years}"/><br/>
+            <div th:if="#{fields.hasErrors('years')}" th:errors="*{years}" class="error"></div>
+
+            <input type="submit" value="count"/>
+        </form>
+    </div>
+
+</article>
+</body>
+</html>
