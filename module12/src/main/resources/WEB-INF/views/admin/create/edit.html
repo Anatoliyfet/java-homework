@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Count</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <!--  <script th:src="@{/static/js/main.js}"></script>-->
+</head>
+<body>
+<article>
+    <h1>Admin</h1>
+    <h2>Create</h2>
+    <div class="form">
+        <form th:action="@{/admin}" method="post" th:object="${user}">
+
+            <input type="text" name="id" placeholder="id" th:field="*{id}"/><br/>
+<!--            <div th:if="#{fields.hasErrors('sum')}" th:errors="*{sum}" class="error"></div>-->
+
+            <input type="text" name="name" placeholder="name" th:field="*{name}"/><br/>
+<!--            <div th:if="#{fields.hasErrors('percentage')}" th:errors="*{percentage}" class="error"></div>-->
+
+            <input type="text" name="age" placeholder="age" th:field="*{age}"/><br/>
+<!--            <div th:if="#{fields.hasErrors('years')}" th:errors="*{years}" class="error"></div>-->
+
+            <input type="submit" value="create"/>
+        </form>
+    </div>
+</hr>
+<!--    <h2>Edit</h2>-->
+<!--    <div class="form">-->
+<!--        <form th:action="@{/admin}" method="put" th:object="${user}">-->
+
+<!--            <input type="text" name="id" placeholder="id" th:field="*{id}"/><br/>-->
+<!--            &lt;!&ndash;            <div th:if="#{fields.hasErrors('sum')}" th:errors="*{sum}" class="error"></div>&ndash;&gt;-->
+
+<!--            <input type="text" name="name" placeholder="name" th:field="*{name}"/><br/>-->
+<!--            &lt;!&ndash;            <div th:if="#{fields.hasErrors('percentage')}" th:errors="*{percentage}" class="error"></div>&ndash;&gt;-->
+
+<!--            <input type="text" name="age" placeholder="age" th:field="*{age}"/><br/>-->
+<!--            &lt;!&ndash;            <div th:if="#{fields.hasErrors('years')}" th:errors="*{years}" class="error"></div>&ndash;&gt;-->
+
+<!--            <input type="submit" value="Edit"/>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--    </hr>-->
+<!--    <h2>Delete</h2>-->
+<!--    <div class="form">-->
+<!--        <form th:action="@{/admin}" method="delete" th:object="${user}">-->
+
+<!--            <input type="text" name="id" placeholder="id" th:field="*{id}"/><br/>-->
+<!--            &lt;!&ndash;            <div th:if="#{fields.hasErrors('sum')}" th:errors="*{sum}" class="error"></div>&ndash;&gt;-->
+
+<!--            <input type="submit" value="Delete"/>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--    </hr>-->
+</article>
+</body>
+</html>

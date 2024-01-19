@@ -1,0 +1,32 @@
+spring:
+  profiles:
+    active: h2
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    defer-datasource-initialization: true
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+  sql:
+    init:
+      mode: always
+
+server:
+  port: 8081
+
+
+logging:
+  level:
+   com.example.module11: info
+   org.springframework.web: debug
+  file:
+    path: userService.log
+
+service:
+  description: User service
+  version: 1.0 BETA
+
+# SPRING_PROFILES_ACTIVE=dev
