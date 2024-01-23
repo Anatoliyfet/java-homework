@@ -1,0 +1,6 @@
+#FileLock
+#Thu Jan 18 16:41:35 MSK 2024
+server=172.28.16.1\:50505
+hostName=FetBook.mshome.net
+method=file
+id=18d1cce40274bc3eb95db779dd834fe61a215f395d0

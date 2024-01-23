@@ -1,0 +1,42 @@
+<html lang="en" xmlns:th="http:www.thymeleaf.org">
+<head>
+    <title>Count</title>
+</head>
+<body>
+
+<h1>Результат:</h1>
+<p>
+    <!--    <b><span th:text="${count}" ></span>-->
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.age}"></td>
+        <td><a th:href="@{admin/update/{id}(id=${user.id})}">Edit</a></td>
+        <td><a th:href="@{admin/delete/{id}(id=${user.id})}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<p><a href="admin/create">Add a new user</a></p>
+<!--<table>-->
+<!--    <tr th:each="user: ${users}">-->
+<!--        <td th:text="${user.id}"/>-->
+<!--        <td th:text="${user.name}"/>-->
+<!--    </tr>-->
+<!--</table>-->
+</p>
+<hr/>
+
+
+</body>
+</html>
