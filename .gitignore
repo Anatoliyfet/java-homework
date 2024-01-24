@@ -2,6 +2,8 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+/temp
+/userService.log
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
